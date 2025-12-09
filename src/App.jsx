@@ -31,7 +31,7 @@ const AppContent = () => {
                 <ChatLayout />
               </ChatProvider>
             ) : (
-              <Navigate to="/auth" replace />
+              <Navigate to="/" replace />
             )
           } 
         />
