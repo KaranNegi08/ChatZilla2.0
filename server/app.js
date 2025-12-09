@@ -47,10 +47,12 @@ if (!fs.existsSync(uploadsDir)) {
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // MongoDB connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/chatapp', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+const MONGO_URI = process.env.MONGODB_URI || 
+"mongodb+srv://karannegiagra_db_user:LeGjSaWLHiWFTb6o@cluster0.rjpeyic.mongodb.net/chat-app?retryWrites=true&w=majority";
+
+mongoose.connect(MONGO_URI)
+  .then(() => console.log("MongoDB Connected"))
+  .catch((err) => console.error("MongoDB connection error:", err));
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
